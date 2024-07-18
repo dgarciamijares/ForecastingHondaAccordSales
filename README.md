@@ -32,7 +32,7 @@ Accurately predicting future sales enables Honda to align production with custom
     print('Training observation from 2014 - 2018:', len(Accord_train))
     print('Testing observation from Jan 2018 - Nov 2023:', len(Accord_test))
     ```
-    ![Data Split Representation](images/model_summary.png) <!-- Replace with actual path to your image -->
+    ![Data Split Representation](images/data_split.png) <!-- Replace with actual path to your image -->
    
 ### Initial Model Development
 
@@ -58,7 +58,7 @@ Accurately predicting future sales enables Honda to align production with custom
         return pd.Series(vif[1:], index=columns)
     VIF(Accord_train, cols)
     ```
-    ![Multicollinearity Results](images/model_summary.png) <!-- Replace with actual path to your image -->
+    ![Multicollinearity Results](images/model_multicollinearity.png) <!-- Replace with actual path to your image -->
    
 ### Model Improvement
 
