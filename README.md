@@ -183,4 +183,4 @@ This project demonstrates the application of linear regression in forecasting sa
 
 ## License
 
-Specify the license for your project.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
