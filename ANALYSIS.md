@@ -52,6 +52,7 @@ print(model1.summary())
 
 ### Model Improvement
 The initial model's equation is:
+
 AccordSales = 1.735e+05 - 1833.6589 * Unemployment + 225.2323 * AccordQueries - 1443.0327 * CPIAll + 192.5350 * CPIEnergy + 0.5860 * MilesTraveled
 
 Interpretation of coefficients:
@@ -62,7 +63,8 @@ Interpretation of coefficients:
 
 ### Variable Selection
 Using regression skills, the goal is to build a high-quality model by selecting the most relevant variables. The chosen model:
-AccordSales = 1.419e+05 + 245.2054 * AccordQueries - 610.9156 * CPIAll} + 67.0291 * CPIEnergy
+
+AccordSales = 1.419e+05 + 245.2054 * AccordQueries - 610.9156 * CPIAll + 67.0291 * CPIEnergy
 
 ## Model Evaluation
 To evaluate the models, we consider R-squared values, Adjusted R-squared, F-statistic, and VIF (Variance Inflation Factor) to address multicollinearity.
