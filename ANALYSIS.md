@@ -52,7 +52,7 @@ print(model1.summary())
 
 ### Model Improvement
 The initial model's equation is:
-\[ \text{AccordSales} = 1.735e+05 - 1833.6589 \times \text{Unemployment} + 225.2323 \times \text{AccordQueries} - 1443.0327 \times \text{CPIAll} + 192.5350 \times \text{CPIEnergy} + 0.5860 \times \text{MilesTraveled} \]
+AccordSales = 1.735e+05 - 1833.6589 * Unemployment + 225.2323 * AccordQueries - 1443.0327 * CPIAll + 192.5350 * CPIEnergy + 0.5860 * MilesTraveled
 
 Interpretation of coefficients:
 - **Intercept:** Estimated sales when all independent variables are zero (141,900 units).
@@ -92,13 +92,13 @@ To assess Model 3, the R-squared value is 0.227, indicating approximately 22.7% 
 Seasonality is important in predicting demand as it tends to be periodic. Adding MonthFactor as an independent variable captures this effect.
 
 ```python
-ols7 = smf.ols(formula='AccordSales ~ MonthFactor + Unemployment + CPIAll + CPIEnergy + MilesTraveled', data=Accord_train)
-model7 = ols7.fit()
-print(model7.summary())
+ols8 = smf.ols(formula='AccordSales ~ MonthFactor + AccordQueries + CPIAll + CPIEnergy', data=Accord_train)
+model8 = ols8.fit()
+print(model8.summary())
 ```
 ![Seasonality Model Summary](images/seasonality_model_summary.png)
 
-The new model's R-squared is 0.748, indicating approximately 74.8% variance explanation. Significant MonthFactor variables include August, January, and May.
+The new model's R-squared is 0.744, indicating approximately 74.4% variance explanation. Significant MonthFactor variables include August, January, and May.
 
 ## Final Model with Consumer Confidence Index (CCI)
 Adding CCI improves the model slightly but doesn't perform well on new data, as indicated by a negative OSR2.
