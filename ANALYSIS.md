@@ -1,5 +1,3 @@
-# Creating the analysis markdown content
-analysis_md_content = """
 # Analysis of Forecasting Honda Accord Sales
 
 ## Introduction
@@ -18,7 +16,7 @@ The dataset contains monthly observations from January 2014 through November 202
 ### Data Splitting
 The dataset is split into a training set (2014-2018) and a testing set (January 2019 - November 2023).
 
-\`\`\`python
+```python
 import pandas as pd
 
 # Load data
@@ -30,12 +28,12 @@ Accord_test = Accord[Accord['Year'] > 2018]
 
 print('Training observation from 2014 - 2018:', len(Accord_train))
 print('Testing observation from Jan 2018 - Nov 2023:', len(Accord_test))
-\`\`\`
+```
 
 ### Initial Linear Regression Model
 Consider the five independent variables: Unemployment, AccordQueries, CPIAll, CPIEnergy, and MilesTraveled. The initial model uses all these variables to predict monthly Accord sales (AccordSales).
 
-\`\`\`python
+```python
 import statsmodels.api as sm
 
 # Define features and target
@@ -49,7 +47,7 @@ X_train = sm.add_constant(X_train)
 # Fit model
 model1 = sm.OLS(y_train, X_train).fit()
 print(model1.summary())
-\`\`\`
+```
 ![Original Model Summary](images/model_summary.png)
 
 ### Model Improvement
@@ -64,7 +62,7 @@ Interpretation of coefficients:
 
 ### Variable Selection
 Using regression skills, the goal is to build a high-quality model by selecting the most relevant variables. The chosen model:
-\[ \text{AccordSales} = 1.419e+05 + 245.2054 \times \text{AccordQueries} - 610.9156 \times \text{CPIAll} + 67.0291 \times \text{CPIEnergy} \]
+AccordSales = 1.419e+05 + 245.2054 * AccordQueries - 610.9156 * CPIAll} + 67.0291 * CPIEnergy
 
 ## Model Evaluation
 To evaluate the models, we consider R-squared values, Adjusted R-squared, F-statistic, and VIF (Variance Inflation Factor) to address multicollinearity.
@@ -93,11 +91,11 @@ To assess Model 3, the R-squared value is 0.227, indicating approximately 22.7% 
 ## Incorporating Seasonality
 Seasonality is important in predicting demand as it tends to be periodic. Adding MonthFactor as an independent variable captures this effect.
 
-\`\`\`python
+```python
 ols7 = smf.ols(formula='AccordSales ~ MonthFactor + Unemployment + CPIAll + CPIEnergy + MilesTraveled', data=Accord_train)
 model7 = ols7.fit()
 print(model7.summary())
-\`\`\`
+```
 ![Seasonality Model Summary](images/seasonality_model_summary.png)
 
 The new model's R-squared is 0.748, indicating approximately 74.8% variance explanation. Significant MonthFactor variables include August, January, and May.
@@ -105,7 +103,7 @@ The new model's R-squared is 0.748, indicating approximately 74.8% variance expl
 ## Final Model with Consumer Confidence Index (CCI)
 Adding CCI improves the model slightly but doesn't perform well on new data, as indicated by a negative OSR2.
 
-\`\`\`python
+```python
 cci_data = pd.DataFrame({
     'Month': pd.date_range(start='2014-01-01', end='2023-11-01', freq='MS'),
     'CCI': [/* Insert CCI data here */]
@@ -118,10 +116,10 @@ Accord = Accord.drop(columns=['Month'])
 ols9 = smf.ols(formula='AccordSales ~ MonthFactor + AccordQueries + CPIAll + CPIEnergy + CCI', data=Accord_train)
 model9 = ols9.fit()
 print(model9.summary())
-\`\`\`
+```
 
 ## Visualizing Model Performance
-\`\`\`python
+```python
 import matplotlib.pyplot as plt
 
 # Predict values
@@ -141,17 +139,8 @@ plt.legend()
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-\`\`\`
+```
 ![Actual vs Predicted Sales](images/actual_vs_predicted.png)
 
 ## Conclusion
 The final model incorporating MonthFactor and economic indicators shows a significant improvement in explaining sales variance. However, the negative OSR2 value when adding CCI suggests overfitting and poor generalization to new data.
-
----
-
-This analysis presents a detailed exploration of predicting Honda Accord sales, addressing variable selection, multicollinearity, seasonality, and additional economic indicators.
-"""
-
-# Save the content to an analysis.md file
-with open("/mnt/data/analysis.md", "w") as file:
-    file.write(analysis_md_content)
