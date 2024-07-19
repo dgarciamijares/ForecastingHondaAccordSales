@@ -152,7 +152,7 @@ Accurately predicting future sales enables Honda to align production with custom
     plt.tight_layout()
     plt.show()
     ```
-    ![Actual vs Predicted Sales Over Time](images/actual_vs_predicted_over_time.png) <!-- Replace with actual path to your image -->
+    ![Actual vs Predicted Sales Over Time](images/actual_vs_predicted_over_time_CII.png) <!-- Replace with actual path to your image -->
 
 The increase in R-squared from 0.744 to 0.768 indicates that the model with the added CCI feature explains slightly more variance in the sales data compared to the original model.
 However, when considering the OSR2 (Out-of-Sample R-squared) for the latest model with the added CCI feature, the value is negative (-0.287). A negative OSR2 indicates that the model performs worse than a simple mean prediction. This suggests that while the model may explain slightly more variance in the training data due to the added CCI feature, it performs poorly when making predictions on new, unseen data.
