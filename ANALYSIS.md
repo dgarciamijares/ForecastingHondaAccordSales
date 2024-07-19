@@ -140,7 +140,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 ```
-![Actual vs Predicted Sales](images/actual_vs_predicted.png)
+![Actual vs Predicted Sales](images/actual_vs_predicted_over_time_CII.png)
 
 ## Conclusion
 The final model incorporating MonthFactor and economic indicators shows a significant improvement in explaining sales variance. However, the negative OSR2 value when adding CCI suggests overfitting and poor generalization to new data.
