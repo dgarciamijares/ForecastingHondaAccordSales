@@ -75,9 +75,9 @@ Accurately predicting future sales enables Honda to align production with custom
 
 1. **Add MonthFactor:**
     ```python
-    ols7 = smf.ols(formula='AccordSales ~ MonthFactor + Unemployment + CPIAll + CPIEnergy + MilesTraveled', data=Accord_train)
-    model7 = ols7.fit()
-    print(model7.summary())
+    ols8 = smf.ols(formula='AccordSales ~ MonthFactor + AccordQueries + CPIAll + CPIEnergy', data=Accord_train)
+    model8 = ols8.fit()
+    print(model8.summary())
     ```
     ![Seasonality Model Summary](images/seasonality_model_summary.png) <!-- Replace with actual path to your image -->
 
